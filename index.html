@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Unit 6 Vocabulary Practice</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#f5f5f5;
+}
+
+.container{
+background:white;
+padding:20px;
+margin:20px auto;
+width:700px;
+border-radius:12px;
+box-shadow:0 0 10px gray;
+}
+
+.wordBox{
+font-size:24px;
+letter-spacing:8px;
+margin:15px;
+}
+
+button{
+padding:8px 15px;
+margin:8px;
+border:none;
+background:#4CAF50;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Unit 6 Vocabulary Practice</h1>
+
+<div class="container">
+
+<h2>Part 1 – Unscramble</h2>
+
+<p>pcseors</p>
+<button onclick="alert('process')">Reveal Answer</button>
+
+<p>rtxepo</p>
+<button onclick="alert('export')">Reveal Answer</button>
+
+<p>lcoal</p>
+<button onclick="alert('local')">Reveal Answer</button>
+
+<p>kcapage</p>
+<button onclick="alert('package')">Reveal Answer</button>
+
+<p>achmecil</p>
+<button onclick="alert('chemical')">Reveal Answer</button>
+
+</div>
+
+<div class="container">
+
+<h2>Part 2 – Choose Meaning</h2>
+
+<p>1. agriculture</p>
+
+<button onclick="check1()">Growing food and raising animals</button>
+<button onclick="wrong()">Buying food from stores</button>
+
+<p id="result1"></p>
+
+</div>
+
+<div class="container">
+
+<h2>Part 3 – Context</h2>
+
+<p>Companies ____ food before selling it.</p>
+
+<button onclick="correct()">process</button>
+<button onclick="wrong()">century</button>
+<button onclick="wrong()">local</button>
+
+<p id="result2"></p>
+
+</div>
+
+<script>
+function check1(){
+document.getElementById("result1").innerHTML="Correct!";
+}
+
+function correct(){
+document.getElementById("result2").innerHTML="Correct!";
+}
+
+function wrong(){
+alert("Try again!");
+}
+</script>
+
+</body>
+</html>
