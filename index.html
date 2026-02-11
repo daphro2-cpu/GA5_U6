@@ -1,109 +1,828 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Unit 6 Vocabulary Practice</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GA5 Unit 6 – From the World to Your Table (Vocab Practice)</title>
 <style>
-body{
-font-family: Arial;
-text-align:center;
-background:#f5f5f5;
-}
+  :root{
+    --bg0:#071425;
+    --bg1:#0b1f36;
+    --card:#0d2744cc;
+    --card2:#0b2140;
+    --stroke:#1f3a5a;
+    --text:#e7f0ff;
+    --muted:#a9bfdc;
+    --accent:#58c0ff;
+    --good:#28d17c;
+    --bad:#ff5a6a;
+    --warn:#ffd463;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "PingFang SC", "Microsoft Yahei", sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 700px at 60% 20%, #173a66 0%, transparent 55%),
+      radial-gradient(900px 600px at 25% 35%, #0d2d4e 0%, transparent 55%),
+      linear-gradient(180deg, var(--bg0), var(--bg1));
+    min-height:100vh;
+    padding:28px 18px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:18px 18px;
+    border:1px solid var(--stroke);
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(12,33,60,.85), rgba(9,25,46,.75));
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  }
+  .brand{
+    display:flex;align-items:center;gap:12px;min-width:280px;
+  }
+  .logo{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(180deg, #ffffff12, #ffffff08);
+    border:1px solid var(--stroke);
+    display:grid;place-items:center;
+    font-weight:800;letter-spacing:.5px;
+    color:var(--accent);
+  }
+  .titleblock .title{
+    font-size:24px;font-weight:800;letter-spacing:.2px;margin:0;
+  }
+  .titleblock .sub{
+    margin-top:2px;color:var(--muted);font-size:13px;
+  }
+  .pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+  .pill{
+    padding:10px 14px;border-radius:999px;
+    border:1px solid var(--stroke);
+    background:rgba(255,255,255,.05);
+    color:var(--text);
+    font-size:13px;
+    display:flex;gap:6px;align-items:center;
+  }
+  .pill b{color:#fff}
+  .grid{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap:16px;
+  }
+  .card{
+    border:1px solid var(--stroke);
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(12,33,60,.75), rgba(9,25,46,.7));
+    box-shadow: 0 18px 55px rgba(0,0,0,.30);
+    overflow:hidden;
+  }
+  .cardpad{padding:18px 18px 16px;}
+  .sectionhead{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 18px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.03);
+  }
+  .badge{
+    padding:7px 12px;border-radius:999px;
+    background:rgba(88,192,255,.14);
+    border:1px solid rgba(88,192,255,.35);
+    color:#cfeeff;
+    font-size:13px;
+    font-weight:700;
+  }
+  .smallmuted{color:var(--muted);font-size:13px;}
+  .howto{
+    margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.55;
+  }
+  .qblock{
+    margin-top:14px;
+    border-top:1px solid rgba(255,255,255,.07);
+    padding-top:14px;
+  }
+  .label{
+    color:var(--muted);
+    font-size:12px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+  }
+  .prompt{
+    margin:8px 0 14px;
+    font-size:20px;
+    font-weight:800;
+    line-height:1.25;
+  }
+  .choices{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .choice{
+    text-align:left;
+    padding:14px 14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+    color:var(--text);
+    cursor:pointer;
+    transition:transform .08s ease, border-color .08s ease, background .08s ease;
+    font-size:16px;
+    user-select:none;
+  }
+  .choice:hover{transform:translateY(-1px);border-color:rgba(88,192,255,.55);background:rgba(88,192,255,.07)}
+  .choice:disabled{opacity:.55;cursor:not-allowed;transform:none}
+  .choice.correct{border-color:rgba(40,209,124,.7);background:rgba(40,209,124,.12)}
+  .choice.wrong{border-color:rgba(255,90,106,.75);background:rgba(255,90,106,.10)}
+  .footerbar{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-top:16px;
+  }
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    padding:10px 14px;border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.05);
+    color:var(--text);
+    cursor:pointer;
+    font-weight:700;
+  }
+  .btn:hover{border-color:rgba(88,192,255,.55);background:rgba(88,192,255,.10)}
+  .btn.primary{
+    background:rgba(88,192,255,.16);
+    border-color:rgba(88,192,255,.40);
+  }
+  .btn.primary:disabled{opacity:.45;cursor:not-allowed}
+  .hintbox{
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1px dashed rgba(255,255,255,.18);
+    background:rgba(255,255,255,.03);
+    color:var(--muted);
+    font-size:14px;
+    display:none;
+  }
+  .status{
+    font-size:14px;color:var(--muted);
+    min-height:20px;
+  }
 
-.container{
-background:white;
-padding:20px;
-margin:20px auto;
-width:700px;
-border-radius:12px;
-box-shadow:0 0 10px gray;
-}
+  /* Right panel */
+  .sidepad{padding:18px;}
+  .sidehead{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;
+  }
+  .sidehead h3{margin:0;font-size:18px;font-weight:900}
+  .unitpill{
+    padding:7px 11px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:var(--muted);
+    font-size:12px;font-weight:800;
+  }
+  .quicknote{color:var(--muted);font-size:13px;line-height:1.5;margin:10px 0 12px}
+  .listtitle{
+    color:#cfeeff;font-weight:900;font-size:13px;margin:12px 0 6px;
+  }
+  .wordlist{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.65;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.03);
+  }
+  .teachernote{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,.07);
+    color:var(--muted);
+    font-size:12.5px;
+    line-height:1.55;
+  }
 
-.wordBox{
-font-size:24px;
-letter-spacing:8px;
-margin:15px;
-}
+  .end{
+    display:none;
+    padding:18px;
+  }
+  .end h2{margin:0 0 10px;font-size:22px}
+  .end p{margin:0 0 12px;color:var(--muted)}
+  .missed{
+    margin-top:10px;
+    border-top:1px solid rgba(255,255,255,.07);
+    padding-top:10px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+  }
+  .tag{
+    display:inline-block;
+    padding:4px 8px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+    margin-right:6px;margin-bottom:6px;
+    color:var(--muted);
+    font-size:12px;
+  }
 
-button{
-padding:8px 15px;
-margin:8px;
-border:none;
-background:#4CAF50;
-color:white;
-border-radius:8px;
-cursor:pointer;
-}
-
+  @media (max-width: 980px){
+    .grid{grid-template-columns:1fr}
+    .choices{grid-template-columns:1fr}
+    .brand{min-width:auto}
+  }
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
-<h1>Unit 6 Vocabulary Practice</h1>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">GA</div>
+      <div class="titleblock">
+        <p class="title">Unit 6 – From the World to Your Table</p>
+        <div class="sub">Vocabulary Practice • Meaning first, then Usage • Review Mode</div>
+      </div>
+    </div>
+    <div class="pills">
+      <div class="pill">Progress: <b id="progressPill">1/20</b></div>
+      <div class="pill">Score: <b id="scorePill">0</b></div>
+      <div class="pill">Mode: <b id="modePill">Main</b></div>
+    </div>
+  </div>
 
-<div class="container">
+  <div class="grid">
+    <!-- MAIN GAME CARD -->
+    <div class="card" id="gameCard">
+      <div class="sectionhead">
+        <div class="badge" id="partBadge">Part: Meaning</div>
+        <div class="smallmuted" id="qCount">Question 1 of 20</div>
+      </div>
 
-<h2>Part 1 – Unscramble</h2>
+      <div class="cardpad">
+        <div>
+          <div class="label">How to play</div>
+          <ul class="howto">
+            <li>Click an answer.</li>
+            <li>If wrong, read the hint and try again.</li>
+            <li>Click <b>Next</b> only when you understand.</li>
+            <li>At the end, you can review the questions you missed.</li>
+          </ul>
+        </div>
 
-<p>pcseors</p>
-<button onclick="alert('process')">Reveal Answer</button>
+        <div class="qblock">
+          <div class="label" id="skillLabel">MEANING</div>
+          <div class="label" style="margin-top:6px">WHICH WORD MEANS:</div>
+          <div class="prompt" id="prompt">...</div>
 
-<p>rtxepo</p>
-<button onclick="alert('export')">Reveal Answer</button>
+          <div class="choices" id="choices"></div>
 
-<p>lcoal</p>
-<button onclick="alert('local')">Reveal Answer</button>
+          <div class="hintbox" id="hintBox"></div>
 
-<p>kcapage</p>
-<button onclick="alert('package')">Reveal Answer</button>
+          <div class="footerbar">
+            <div class="btnrow">
+              <button class="btn" id="restartBtn">Restart</button>
+              <button class="btn" id="hintBtn">Hint</button>
+            </div>
 
-<p>achmecil</p>
-<button onclick="alert('chemical')">Reveal Answer</button>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="status" id="status"></div>
+              <button class="btn primary" id="nextBtn" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <!-- SIDE INFO CARD -->
+    <div class="card" id="sideCard">
+      <div class="sidepad">
+        <div class="sidehead">
+          <h3>Quick Info</h3>
+          <div class="unitpill">Unit 6</div>
+        </div>
 
-<div class="container">
+        <div class="quicknote">
+          Focus words for this reading. Use the list to self-check after you answer.
+        </div>
 
-<h2>Part 2 – Choose Meaning</h2>
+        <div class="listtitle">Unit 6 Words:</div>
+        <div class="wordlist" id="wordList"></div>
 
-<p>1. agriculture</p>
+        <div class="teachernote">
+          Teacher note: This quiz is set to <b>Meaning first</b>, then <b>Usage</b> (sentence choice).<br/>
+          No typing required.
+        </div>
+      </div>
+    </div>
 
-<button onclick="check1()">Growing food and raising animals</button>
-<button onclick="wrong()">Buying food from stores</button>
+    <!-- END SCREEN -->
+    <div class="card end" id="endCard" style="grid-column:1 / -1;">
+      <div class="sectionhead">
+        <div class="badge">Finished</div>
+        <div class="smallmuted">You can review missed questions.</div>
+      </div>
+      <div class="end">
+        <h2>Nice work!</h2>
+        <p id="finalLine"></p>
 
-<p id="result1"></p>
+        <div class="btnrow">
+          <button class="btn" id="reviewBtn">Review Missed</button>
+          <button class="btn primary" id="playAgainBtn">Play Again</button>
+        </div>
 
-</div>
+        <div class="missed" id="missedList"></div>
+      </div>
+    </div>
 
-<div class="container">
-
-<h2>Part 3 – Context</h2>
-
-<p>Companies ____ food before selling it.</p>
-
-<button onclick="correct()">process</button>
-<button onclick="wrong()">century</button>
-<button onclick="wrong()">local</button>
-
-<p id="result2"></p>
-
+  </div>
 </div>
 
 <script>
-function check1(){
-document.getElementById("result1").innerHTML="Correct!";
+/** =========================
+ *  UNIT 6 WORD BANK (11)
+ *  ========================= */
+const WORDS = [
+  "convenient",
+  "export",
+  "local",
+  "process",
+  "package",
+  "farmer’s market",
+  "agriculture",
+  "corporate farm",
+  "decrease",
+  "century",
+  "chemical"
+];
+
+/** =========================
+ *  QUESTIONS
+ *  - 20 total like your template
+ *  - Meaning first (10), then Usage (10)
+ *  - No typing, 4 choices
+ *  ========================= */
+const QUESTIONS_MAIN = [
+  // MEANING (10)
+  {
+    part:"Meaning",
+    prompt:"easy and helpful; saves time",
+    answer:"convenient",
+    hint:"Think: quick and easy to use.",
+    choices:["convenient","century","process","local"]
+  },
+  {
+    part:"Meaning",
+    prompt:"send goods/food to another country to sell",
+    answer:"export",
+    hint:"Countries export food to other countries.",
+    choices:["package","export","chemical","farmer’s market"]
+  },
+  {
+    part:"Meaning",
+    prompt:"from the place near where you live",
+    answer:"local",
+    hint:"Local = nearby.",
+    choices:["local","corporate farm","century","process"]
+  },
+  {
+    part:"Meaning",
+    prompt:"prepare or change food in a factory before selling it",
+    answer:"process",
+    hint:"Juice is made by processing fruit.",
+    choices:["process","export","decrease","chemical"]
+  },
+  {
+    part:"Meaning",
+    prompt:"put food into boxes/bags/wrapping",
+    answer:"package",
+    hint:"After processing, companies package food.",
+    choices:["package","local","agriculture","century"]
+  },
+  {
+    part:"Meaning",
+    prompt:"a place where farmers sell fresh food directly",
+    answer:"farmer’s market",
+    hint:"You can buy fresh vegetables from farmers there.",
+    choices:["farmer’s market","corporate farm","chemical","export"]
+  },
+  {
+    part:"Meaning",
+    prompt:"farming; growing crops and raising animals for food",
+    answer:"agriculture",
+    hint:"Agriculture is another word for farming.",
+    choices:["agriculture","process","local","package"]
+  },
+  {
+    part:"Meaning",
+    prompt:"a very large farm owned by a company",
+    answer:"corporate farm",
+    hint:"Corporate = company/business.",
+    choices:["corporate farm","farmer’s market","century","export"]
+  },
+  {
+    part:"Meaning",
+    prompt:"make smaller; reduce",
+    answer:"decrease",
+    hint:"Decrease = go down.",
+    choices:["decrease","process","chemical","local"]
+  },
+  {
+    part:"Meaning",
+    prompt:"a period of 100 years",
+    answer:"century",
+    hint:"One hundred years = one century.",
+    choices:["century","decrease","package","agriculture"]
+  },
+
+  // USAGE (10) — choose the sentence that uses the word correctly
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **local** correctly.",
+    answerIndex: 0,
+    hint:"Local = near where you live.",
+    choices:[
+      "We bought local vegetables from farms near our city.",
+      "We local the apples into boxes at the factory.",
+      "Local means one hundred years.",
+      "A local is a chemical added to food."
+    ],
+    answerWord:"local"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **export** correctly.",
+    answerIndex: 1,
+    hint:"Export = send to another country.",
+    choices:[
+      "We export our food by eating it quickly.",
+      "Mexico exports tomatoes to other countries.",
+      "Export means to cook food at home.",
+      "Export is a place where farmers sell food."
+    ],
+    answerWord:"export"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **process** correctly.",
+    answerIndex: 2,
+    hint:"Process = prepare/change in steps.",
+    choices:[
+      "A process is 100 years.",
+      "Process means food grown near you.",
+      "Companies process apples to make juice.",
+      "We process at the farmer’s market to buy eggs."
+    ],
+    answerWord:"process"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **package** correctly.",
+    answerIndex: 0,
+    hint:"Package = put into boxes/bags/wrapping.",
+    choices:[
+      "Workers package potatoes in boxes for stores.",
+      "We package means we grow food on rooftops.",
+      "Package is another word for farming.",
+      "A package is a chemical on food."
+    ],
+    answerWord:"package"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **agriculture** correctly.",
+    answerIndex: 3,
+    hint:"Agriculture = farming.",
+    choices:[
+      "Agriculture is the label on a box.",
+      "Agriculture means food traveling very far.",
+      "Agriculture is the market where farmers sell food.",
+      "Agriculture has changed a lot in the last 100 years."
+    ],
+    answerWord:"agriculture"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **corporate farm** correctly.",
+    answerIndex: 1,
+    hint:"Corporate farm = big company farm.",
+    choices:[
+      "A corporate farm is a small garden behind my house.",
+      "A corporate farm uses big machines and many workers.",
+      "A corporate farm is a chemical in food.",
+      "A corporate farm means one century."
+    ],
+    answerWord:"corporate farm"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **decrease** correctly.",
+    answerIndex: 2,
+    hint:"Decrease = reduce / make smaller.",
+    choices:[
+      "We decrease food to another country.",
+      "Decrease means a place where farmers sell food.",
+      "Buying local food can decrease pollution from transport.",
+      "Decrease is a kind of farm in the city."
+    ],
+    answerWord:"decrease"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **chemical** correctly.",
+    answerIndex: 0,
+    hint:"Chemical = substance (often man-made).",
+    choices:[
+      "Some chemicals on food may not be good for our health.",
+      "Chemical means to sell food at a market.",
+      "Chemical means food from your neighborhood.",
+      "Chemical is a period of 100 years."
+    ],
+    answerWord:"chemical"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **farmer’s market** correctly.",
+    answerIndex: 3,
+    hint:"Farmers sell fresh food directly there.",
+    choices:[
+      "A farmer’s market is a factory that packs food.",
+      "A farmer’s market exports food to other countries.",
+      "A farmer’s market is a chemical added to food.",
+      "We bought fresh strawberries at the farmer’s market."
+    ],
+    answerWord:"farmer’s market"
+  },
+  {
+    part:"Usage",
+    prompt:"Choose the sentence that uses **convenient** correctly.",
+    answerIndex: 1,
+    hint:"Convenient = easy and saves time.",
+    choices:[
+      "Convenient means one hundred years.",
+      "It is convenient to buy food from one store when you are busy.",
+      "Convenient means to send food to another country.",
+      "Convenient is a place where farmers sell vegetables."
+    ],
+    answerWord:"convenient"
+  }
+];
+
+/** =========================
+ *  STATE
+ *  ========================= */
+let mode = "Main";               // Main / Review
+let questions = [];              // active question list
+let index = 0;
+let score = 0;
+let lockedCorrect = false;       // allow Next only after correct
+let missed = [];                 // store missed question objects (with metadata)
+let currentHadWrong = false;     // track if student missed this question
+
+/** =========================
+ *  ELEMENTS
+ *  ========================= */
+const wordListEl = document.getElementById("wordList");
+const progressPill = document.getElementById("progressPill");
+const scorePill = document.getElementById("scorePill");
+const modePill = document.getElementById("modePill");
+
+const partBadge = document.getElementById("partBadge");
+const qCount = document.getElementById("qCount");
+const skillLabel = document.getElementById("skillLabel");
+const promptEl = document.getElementById("prompt");
+const choicesEl = document.getElementById("choices");
+
+const hintBtn = document.getElementById("hintBtn");
+const restartBtn = document.getElementById("restartBtn");
+const nextBtn = document.getElementById("nextBtn");
+const hintBox = document.getElementById("hintBox");
+const statusEl = document.getElementById("status");
+
+const gameCard = document.getElementById("gameCard");
+const sideCard = document.getElementById("sideCard");
+const endCard = document.getElementById("endCard");
+const endInner = endCard.querySelector(".end");
+const finalLine = document.getElementById("finalLine");
+const missedList = document.getElementById("missedList");
+const reviewBtn = document.getElementById("reviewBtn");
+const playAgainBtn = document.getElementById("playAgainBtn");
+
+/** =========================
+ *  INIT UI
+ *  ========================= */
+wordListEl.innerHTML = WORDS.map(w => `• ${escapeHTML(w)}`).join("<br/>");
+
+function startMain(){
+  mode = "Main";
+  modePill.textContent = mode;
+  questions = shuffle([...QUESTIONS_MAIN]); // random order
+  index = 0;
+  score = 0;
+  missed = [];
+  loadQuestion();
 }
 
-function correct(){
-document.getElementById("result2").innerHTML="Correct!";
+function startReview(){
+  mode = "Review";
+  modePill.textContent = mode;
+  questions = missed.map(m => m.q); // only the questions
+  index = 0;
+  score = 0; // optional: reset score in review
+  loadQuestion();
 }
 
-function wrong(){
-alert("Try again!");
+/** =========================
+ *  RENDER
+ *  ========================= */
+function loadQuestion(){
+  // end condition
+  if(index >= questions.length){
+    showEnd();
+    return;
+  }
+
+  // show cards
+  gameCard.style.display = "";
+  sideCard.style.display = "";
+  endCard.style.display = "none";
+
+  lockedCorrect = false;
+  currentHadWrong = false;
+  nextBtn.disabled = true;
+  hintBox.style.display = "none";
+  statusEl.textContent = "";
+
+  const q = questions[index];
+
+  partBadge.textContent = `Part: ${q.part}`;
+  skillLabel.textContent = q.part.toUpperCase();
+  qCount.textContent = `Question ${index+1} of ${questions.length}`;
+  progressPill.textContent = `${index+1}/${questions.length}`;
+  scorePill.textContent = `${score}`;
+
+  promptEl.innerHTML = formatPrompt(q.prompt);
+
+  // build choice buttons
+  choicesEl.innerHTML = "";
+  const choiceData = buildChoices(q);
+
+  choiceData.forEach((c) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = escapeHTML(c.label);
+    btn.onclick = () => handleChoice(btn, c, q);
+    choicesEl.appendChild(btn);
+  });
 }
+
+function buildChoices(q){
+  // Meaning: choices are words, correct is q.answer
+  if(q.part === "Meaning"){
+    return q.choices.map(w => ({
+      label: w,
+      isCorrect: normalize(w) === normalize(q.answer),
+      value: w
+    }));
+  }
+
+  // Usage: correct is answerIndex
+  if(q.part === "Usage"){
+    return q.choices.map((sent, i) => ({
+      label: sent,
+      isCorrect: i === q.answerIndex,
+      value: i
+    }));
+  }
+  return [];
+}
+
+/** =========================
+ *  INTERACTION
+ *  ========================= */
+function handleChoice(btn, choice, q){
+  if(lockedCorrect) return;
+
+  // disable hover spam while giving feedback
+  const all = [...choicesEl.querySelectorAll(".choice")];
+
+  if(choice.isCorrect){
+    btn.classList.add("correct");
+    lockedCorrect = true;
+    nextBtn.disabled = false;
+
+    // score rule: +1 only if first try correct (optional)
+    if(!currentHadWrong) score += 1;
+    scorePill.textContent = `${score}`;
+
+    statusEl.textContent = "Correct!";
+    statusEl.style.color = "rgba(40,209,124,.95)";
+
+    // lock other buttons
+    all.forEach(b => b.disabled = true);
+
+    // record missed if they had wrong attempts
+    if(currentHadWrong){
+      missed.push({ q, note: "Missed on first try" });
+    }
+  } else {
+    btn.classList.add("wrong");
+    currentHadWrong = true;
+    statusEl.textContent = "Try again.";
+    statusEl.style.color = "rgba(255,90,106,.95)";
+    // show hint automatically after first wrong
+    hintBox.textContent = q.hint || "Look at the meaning carefully and try again.";
+    hintBox.style.display = "block";
+  }
+}
+
+hintBtn.addEventListener("click", () => {
+  const q = questions[index];
+  hintBox.textContent = q.hint || "Look at the meaning carefully and try again.";
+  hintBox.style.display = "block";
+});
+
+restartBtn.addEventListener("click", () => {
+  startMain();
+});
+
+nextBtn.addEventListener("click", () => {
+  index += 1;
+  loadQuestion();
+});
+
+reviewBtn.addEventListener("click", () => {
+  if(missed.length === 0){
+    // if nothing missed, just restart main
+    startMain();
+    return;
+  }
+  // hide end, start review
+  startReview();
+});
+
+playAgainBtn.addEventListener("click", () => startMain());
+
+/** =========================
+ *  END SCREEN
+ *  ========================= */
+function showEnd(){
+  gameCard.style.display = "none";
+  sideCard.style.display = "none";
+  endCard.style.display = "";
+  endInner.style.display = "";
+
+  const total = (mode === "Main") ? QUESTIONS_MAIN.length : questions.length;
+  finalLine.textContent = `Mode: ${mode}. Your score is ${score}.`;
+
+  if(missed.length === 0){
+    missedList.innerHTML = `<div class="tag">No missed questions 🎉</div>`;
+  } else {
+    const tags = missed.map((m, i) => {
+      const t = m.q.part === "Meaning"
+        ? `Meaning: ${m.q.answer}`
+        : `Usage: ${m.q.answerWord || "sentence"}`;
+      return `<span class="tag">${i+1}. ${escapeHTML(t)}</span>`;
+    }).join(" ");
+    missedList.innerHTML = `<div style="margin-bottom:8px;color:#cfeeff;font-weight:900;">Missed Questions</div>${tags}`;
+  }
+}
+
+/** =========================
+ *  HELPERS
+ *  ========================= */
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function normalize(s){
+  return (s||"").toLowerCase().replace(/[’']/g,"'").trim();
+}
+
+function escapeHTML(str){
+  return (str||"").replace(/[&<>"']/g, (m)=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+
+// Make bold markers **word** visible without risking HTML injection
+function formatPrompt(text){
+  const safe = escapeHTML(text);
+  // convert **...** to <b>...</b>
+  return safe.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+}
+
+/** =========================
+ *  START
+ *  ========================= */
+startMain();
 </script>
-
 </body>
 </html>
